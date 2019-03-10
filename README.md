@@ -57,7 +57,7 @@ MNIST dataset can be downloaded with scikit-learn for experimentation. We shall 
 
 ```python
 # Download the dataset
-digits = fetch_openml('MNIST original')
+digits = fetch_openml('mnist_784')
 digits
 ```
 
