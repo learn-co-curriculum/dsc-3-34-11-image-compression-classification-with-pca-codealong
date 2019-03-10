@@ -36,7 +36,7 @@ Let's load this dataset into our working environment. First we need the necessar
 ```python
 # Import necessary libraries 
 
-from sklearn.datasets import fetch_mldata
+from sklearn.datasets import fetch_openml
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
@@ -53,11 +53,11 @@ import pandas as pd
 
 ### Download and Inspect the Dataset
 
-MNIST dataset can be downloaded with scikit-learn for experimentation. We shall use `fetch_mldata()` to import this dataset into our environment. 
+MNIST dataset can be downloaded with scikit-learn for experimentation. We shall use `fetch_openml()` to import this dataset into our environment. 
 
 ```python
 # Download the dataset
-digits = fetch_mldata('MNIST original')
+digits = fetch_openml('mnist_784')
 digits
 ```
 
@@ -101,7 +101,7 @@ print('Target:', target.shape)
 
     Features: (70000, 784)
     Target: (70000,)
-
+    
 
 #### Viewing Images and labels in the dataset 
 Above we can see that data is saved as arrays of 0/1 digits, following the digitization approach we saw in the previous lesson. We can visualize these arrays as images as shown below:
@@ -137,14 +137,14 @@ print ('Label:',digits.target[-1])
 
 
     Label: 0.0
-
+    
 
 
 ![png](index_files/index_10_2.png)
 
 
     Label: 9
-
+    
 
 Here we visualized the first and last image in the features dataset and pulled their labels for the target. 
 
@@ -168,7 +168,7 @@ digits.data = scaler.fit_transform(digits.data)
 
     /anaconda3/lib/python3.6/site-packages/sklearn/utils/validation.py:475: DataConversionWarning: Data with input dtype uint8 was converted to float64 by StandardScaler.
       warnings.warn(msg, DataConversionWarning)
-
+    
 
 ### PCA with 95% Variance Retention
 
@@ -288,7 +288,7 @@ tot
 
     [40.57172851 29.05682915 26.87856923 20.80096479 18.12446406]
     719.010271575293
-
+    
 
 We see a huge numbers here. That is because the variance is not normalized in this case. We can normalize each variance value explained by individual components and normalize it as below:
 ```python
@@ -304,7 +304,7 @@ sum(var_exp)
 ```
 
     [5.6427189026198405, 4.0412258761615, 3.738273331486544, 2.892999670315867, 2.5207517581332257]
-
+    
 
 
 
@@ -610,7 +610,7 @@ print(score)
 ```
 
     0.9171428571428571
-
+    
 
 So we have 91% accuracy, with 229 components. This sounds great. We have managed to compress our data from 700+ features to just 229 components (1/3 of original data and can still achieve a high level of classification accuracy. We have run above experiments with classifiers mostly in their vanilla settings. Fine tuning and optimization techniques may help us increase this score. 
 
